@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page Title</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+          crossorigin="anonymous">
+    <style>
+        /* Custom CSS styles */
+        body {
+            background-color: #f8f9fa;
+        }
+        .container {
+            margin-top: 50px;
+        }
+        h2 {
+            font-size: 3rem;
+            color: #007bff;
+            margin-bottom: 30px;
+        }
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 5px 10px rgba(0,0,0,.3);
+        }
+        .form-control:focus {
+            box-shadow: none;
+        }
+        input[type="submit"] {
+            background-color: #007bff;
+            border: none;
+        }
+        input[type="submit"]:hover {
+            background-color: #0069d9;
+        }
+        .alert-danger {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="text-center">
+        <h2>Validate Your Code</h2>
+        <h3 th:inline="text">Hello:[[${remoteUser}]]!</h3>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <form id="validateCode" name="validateCode" method="get" th:action="@{/validateCode}">
+                <div class="form-group">
+                    <input type="text" name="codenum" class="form-control form-control-lg" required="true" autofocus="true" placeholder="Enter your code here">
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Submit" class="btn btn-lg btn-block text-white">
+                </div>
+                <div th:if="${param.error}" class="alert alert-danger">
+                    Invalid Code. Try Again.
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>

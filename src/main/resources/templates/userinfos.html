@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org">
+<head>
+  <style>
+        body {
+            background-color: #F5F5F5;
+            font-family: Arial, sans-serif;
+        }
+
+        h1 {
+            margin-top: 50px;
+            font-size: 36px;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        form {
+            margin-top: 50px;
+            text-align: center;
+        }
+
+        table {
+            margin: auto;
+            width: 400px;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #337ab7;
+            color: white;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            box-sizing: border-box;
+            border: none;
+            border-bottom: 2px solid #337ab7;
+        }
+
+        input[type="submit"] {
+            background-color: #337ab7;
+            color: white;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #286090;
+        }
+    </style>
+</head>
+<body>
+<center>
+  <form th:object="${user}" id="createTicket",name="createTicket" th:action="@{/createTicket}" method="post">
+
+    <table>
+      <tr>
+        <th colspan="2">Please Enter Your Information</th>
+      </tr>
+      <tr>
+        <td><label for="name">Name:</label></td>
+        <td><input th:field="*{name}" type="text" name="name"></td>
+      </tr>
+      <tr>
+        <td><label for="surName">SurName:</label></td>
+        <td><input th:field="*{surName}" type="text" name="surName"></td>
+      </tr>
+      <tr>
+        <td><label for="email">Email:</label></td>
+        <td><input th:field="*{email}" type="text" name="email"></td>
+      </tr>
+      <tr>
+        <td><label for="phoneNumber">Phone Number:</label></td>
+        <td><input th:field="*{phoneNumber}" type="text" name="phoneNumber"></td>
+      </tr>
+      <tr>
+        <td><label for="checkbox1">High priority :</label></td>
+        <td><input type="checkbox" id="checkbox1" name="checkbox1"></td>
+      </tr>
+      <tr>
+        <td><label for="checkbox2">is Public:</label></td>
+        <td><input type="checkbox" id="checkbox2" name="checkbox2"></td>
+      </tr>
+      <tr>
+        <td colspan="2"><select id="categorySelect" name="categorySelect">
+          <option value="" selected disabled>Select a Category</option>
+          <option value="K1">K1</option>
+          <option value="Z1">Z1</option>
+          <option value="U1">U1</option>
+        </select></td>
+      </tr>
+      <tr>
+        <td><select id="subcategorySelect" name="subcategorySelect" disabled>
+          <option value="" selected disabled>Select a Subcategory</option>
+        </select></td>
+      </tr>
+
+      <tr>
+        <td colspan="2"><input type="submit" value="Create Ticket"></td>
+      </tr>
+    </table>
+
+
+    <script>
+  const subcategories = {
+    K1: ['K1A', 'K1B', 'K1C'],
+    Z1: ['Z1A', 'Z1B', 'Z1C', 'Z1D'],
+    U1: ['U1A', 'U1B']
+  };
+
+  const categorySelect = document.querySelector('#categorySelect');
+  const subcategorySelect = document.querySelector('#subcategorySelect');
+
+  categorySelect.addEventListener('change', () => {
+    const category = categorySelect.value;
+    subcategorySelect.disabled = !category;
+    subcategorySelect.innerHTML = '<option value="" selected disabled>Select a Subcategory</option>';
+    if (category && subcategories.hasOwnProperty(category)) {
+      subcategories[category].forEach(subcategory => {
+        const option = document.createElement('option');
+        option.value = subcategory;
+        option.textContent = subcategory;
+        subcategorySelect.appendChild(option);
+      });
+    }
+  });
+</script>
+
+  </form>
+</center>
+</body>
+</html>
