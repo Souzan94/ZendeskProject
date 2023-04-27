@@ -3,6 +3,7 @@ package com.system.ZenDesk.Widget.controller;
 
 import com.system.ZenDesk.Widget.model.User;
 import com.system.ZenDesk.Widget.repo.UserRepo;
+import com.system.ZenDesk.Widget.service.IvrService;
 import com.system.ZenDesk.Widget.service.TicketService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,6 +22,9 @@ public class TicketController {
     public UserRepo userRepo;
     @Autowired
     public TicketService ticketService;
+    @Autowired
+    public IvrService  ivrService;
+
     @RequestMapping(value="/createTicket",method = RequestMethod.POST)
 
     public ModelAndView  createTicket(ModelAndView mv,  @ModelAttribute User user, @RequestParam(value = "checkbox1",defaultValue = "false") boolean checkbox1,
@@ -34,6 +38,7 @@ public class TicketController {
         user1.setSurName(user.getSurName());
         user1=userRepo.save(user1);
         String message = ticketService.generateTicket(user1,checkbox1,checkbox2,categorySelect,subcategory);
+        ivrService.CreateCampaign();
         mv.addObject("finalMessage",message);
         mv.setViewName("dashboard");
 
