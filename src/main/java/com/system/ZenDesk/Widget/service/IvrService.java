@@ -34,6 +34,10 @@ public class IvrService {
 
     @Value("${host}")
     private String host;
+    @Value("${phone}")
+    private String phone;
+
+
 
     public void CreateCampaign() throws IOException {
 
@@ -76,7 +80,7 @@ public class IvrService {
     request.setDigit_timeout(4);
     request.setIs_commercial(false);
     List<PhoneListItem> phoneList = new ArrayList<PhoneListItem>();
-    phoneList.add(new PhoneListItem("905366427550","",""));
+    phoneList.add(new PhoneListItem(phone,"",""));
     request.setPhone_list(phoneList);
         String json = objectMapper.writeValueAsString(request);
 
