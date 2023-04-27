@@ -48,7 +48,7 @@ public class VerificationController {
            int code=verificationService.generateCode(email);
 
             logger.info("Code : "+code);
-            EmailTemplate emailTemplate= new EmailTemplate("sendCode.html");
+            EmailTemplate emailTemplate= new EmailTemplate("your code is");
             Map<String,String> replacements= new HashMap<String,String>();
             replacements.put("user",email);
             replacements.put("codenum",String.valueOf(code));
