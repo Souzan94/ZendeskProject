@@ -64,7 +64,7 @@ public class VerificationController {
     public ModelAndView validateCode(ModelAndView mv, @RequestParam("codenum") int codenum){
 
       final  String  SUCCESS= "Entered Code Is Valid";
-        String   FAIL="Code Has Been Expired  In 1 Minute .Please Resend Again";
+      String   FAIL="Code Has Been Expired  In 1 Minute .Please Resend Again";
       Authentication auth = SecurityContextHolder.getContext().getAuthentication();
       String email=auth.getName();
       logger.info("Code Number : "+codenum);
@@ -92,8 +92,9 @@ public class VerificationController {
 
             return  mv;
         }
-        else{ FAIL="Code Is Invalid Please Check From Your Code ";}
+        else{
 
+            FAIL="Code Is Invalid Please Check From Your Code ";}
 
        }
 
@@ -101,8 +102,9 @@ public class VerificationController {
       }
 
 
-      mv.addObject("codeMessage",FAIL);
-      mv.setViewName("codepage");
+        mv.addObject("codeMessage",FAIL);
+
+        mv.setViewName("codepage");
       return  mv;
 
 

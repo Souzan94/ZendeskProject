@@ -83,7 +83,7 @@ String appName;
    else{
 
 
-  mv.addObject("infosMessage","Good informations");
+  //mv.addObject("infosMessage","Good informations");
     BCryptPasswordEncoder passwordEncoder=new BCryptPasswordEncoder();
     User user= new User(0,passwordEncoder.encode(email),email,false,"","","");
 

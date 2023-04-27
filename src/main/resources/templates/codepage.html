@@ -40,6 +40,15 @@
         }
         .alert-danger {
             margin-top: 20px;
+             background-color: red;
+        }
+
+         p {
+            color: #FF1C19;
+            font-size: 18px;
+            margin: 0;
+            margin-top: 20px;
+            text-align: center;
         }
     </style>
 </head>
@@ -48,6 +57,8 @@
     <div class="text-center">
         <h2>Validate Your Code</h2>
         <h3 th:inline="text">Hello:[[${remoteUser}]]!</h3>
+        <p th:if="${codeMessage}" th:text="${codeMessage}"></p>
+
     </div>
     <div class="row justify-content-center">
         <div class="col-md-6">
